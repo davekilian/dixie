@@ -29,5 +29,12 @@ Mediawiki-style conventions:
 Dropbox Integration
 -------------------
 
-TODO
+Dixie is sandboxed to a folder on your Dropbox via an
+[app folder](https://www.dropbox.com/developers/start/core). Pages are stored
+in raw markdown, and any direct modification to these files are immediately
+reflected on the website (after the changes are synced with the cloud). 
+
+Each wiki is represented by a folder in Dixie's app folder. This folder 
+contains the pages in the wiki ('page-name.md') and an uploads/ folder
+contained media uploaded to and used within the wiki.
 

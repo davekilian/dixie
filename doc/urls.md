@@ -23,6 +23,7 @@ http://dixie/wiki-name/page-name/action
     **http://domain/wiki-name/main-page**
 * **/action** is action to perform with this page, one of the following:
   * **/show** or ommited: renders the page to HTML and provides edit links.
+  * **/src**: shows the markdown source as plain text
   * **/edit**: displays the editor preloaded with the contents of the page,
     alongside a live preview of the changes made. 
   * **/share**: Allows the user to share the page via a public dropbox link,
@@ -62,12 +63,12 @@ may be named such that its URL would conflict with one of these.
   dropbox or shared from another), and allows the user to import, export,
   create, view, and delete wikis. This view is rendered implicitly when the
   user visits **http://dixie/wiki-name** without specifying a page
-* **/uploads/wiki**: lists files that have been uploaded to the specified
+* **/wiki/uploads**: lists files that have been uploaded to the specified
   wiki, with options for replacing or deleting them.
-* **/upload/wiki/asset-name**: POST target to store the uploaded data as
+* **/wiki/upload/asset-name**: POST target to store the uploaded data as
   **asset-name** filed under the wiki named **wiki**. 
 * **/new**: displays a wizard/form thing for creating a new wiki
-* **/share/wiki**: provides options for adding a collaborator to the wiki
+* **/wiki/share**: provides options for adding a collaborator to the wiki
 * **/render?url=encoded-url**: Renders a wiki page shared from a wiki on a
   different dropbox account, and displays information about where the page
   came from. 
