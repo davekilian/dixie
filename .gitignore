@@ -16,3 +16,7 @@
 
 # Ignore precompiled assets (generate manually)
 public/assets
+
+# Ignore vim temp files
+*.swo
+*.swp
