@@ -2,7 +2,8 @@
 TODO
 ====
 
-* High level design
-* Simple rails+dropbox prototype
+* Model design 
+  * Minimize Dropbox API calls
+* Dribble
 * Write more TODOs
 

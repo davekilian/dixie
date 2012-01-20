@@ -4,6 +4,8 @@ URL Structure
 
 This document briefly describes dixie pages and details the URL structure
 
+TODO: add design for revision history and rollbacks
+
 http://dixie/wiki-name/page-name/action
 ---------------------------------------
 
@@ -31,7 +33,7 @@ http://dixie/wiki-name/page-name/action
   * **/save**: Post target to finish editing the page
   * **/delete**: Post target for removing the page
 
-### Sections ###
+### Sections
 
 * If the current action is **/show** or omitted, anchor tag with the section
   name may be appended to the end of the current URL (e.g. 
