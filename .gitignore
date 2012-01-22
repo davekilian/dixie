@@ -20,3 +20,6 @@ public/assets
 # Ignore vim temp files
 *.swo
 *.swp
+
+# Ignore rdoc output
+doc/
