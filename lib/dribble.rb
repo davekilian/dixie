@@ -127,7 +127,7 @@ class Dribble < ActionController::Base
 
 				session[:dribble] = [ request_key, request_secret, access_key,
 									  access_secret ].join '-'
-				
+			
 				yield DribbleResponder.new(:success) if block_given?
 			rescue DropboxAuthError => e
 				yield DribbleResponder.new(:failure, 
@@ -183,6 +183,10 @@ class Dribble < ActionController::Base
 
 		def cached
 			yield if block_given? and @result == :cached
+		end
+
+		def authorized?
+			@result != :failure
 		end
 
 	end

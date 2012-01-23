@@ -1,0 +1,10 @@
+<h1>My Wikis</h1>
+
+<% @wiki.each_pair do |url, name| %>
+	<p><a href="<%= url %>"><%= name %></a></p>
+<% end %>
+
+<hr style="width: 20%" align="left" />
+
+<p><a href="/new">Create a new wiki</a></p>
+

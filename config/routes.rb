@@ -1,6 +1,7 @@
 Dixie::Application.routes.draw do
 
-	root				:to => 'static_pages#about'
+	root				:to => 'wiki#index'
+	match '/manage',	:to => 'wiki#index'
 
 	match '/about',		:to => 'static_pages#about'
 	match '/contact',	:to => 'static_pages#contact'
