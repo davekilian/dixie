@@ -52,3 +52,7 @@ a.footer-link:hover {
 p {
 	font-size : 1.1em;
 }
+
+li {
+	margin-bottom : 0.5em
+}
