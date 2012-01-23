@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dixie</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+	<head>
+		<title><%= "#{@title} | " if @title %>Dixie</title>
+		<%= stylesheet_link_tag    "application" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="content-border" style="width:700px;margin-left:auto;margin-right:auto;">
+			<div class="content">				
+				<%= yield %>
+			</div>
+		</div>
+		<p class="footer">
+			<a class="footer-link" href="/">Dixie</a> |
+			<a class="footer-link" href="/about">About</a> |
+			<a class="footer-link" href="/privacy">Privacy</a> | 
+			<a class="footer-link" href="/contact">Contact</a>
+		</p>
+	</body>
 </html>
+
