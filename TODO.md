@@ -2,7 +2,10 @@
 TODO
 ====
 
-* Model design 
-  * Minimize Dropbox API calls
+* Application view / style based on mockups
+* Static pages
+* Wiki organization
+* Page storing, retrieval, editing
+* Client-side rendering
 * Write more TODOs
 
