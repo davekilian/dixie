@@ -11,29 +11,32 @@ Dribble is a rails-oriented authorization wrapper for the Dropbox SDK gem that
 
 This is best illustrated by example:
 
-    class MyController < ApplicationController
-      before_filter link_to_dropbox, :only => foo
-
+    class Example < ApplicationController
+      
+      before_filter :link_to_dropbox, :only => :foo
+ 
       def foo
         client = Dribble::client
         # ...
       end
-
-    private
+ 
+      private
+ 
       def link_to_dropbox
-        Dribble::configure(API_KEY, API_SECRET, :app_folder)
+        Dribble::configure(API_KEY, API_SECRET, :app_folder, self)
         Dribble::authorize do |result|
           result.success do
             flash_success_message
             redirect_to some_page
           end
-
-          result.failed { |status| flash_error :status => status }
-
-          result.none { @was_already_authorized = true }
+ 
+          result.failure do { |status| flash_error :status => status }
+ 
+          result.cached { @was_already_authorized = true }
         end
       end
-
-      # ...
+  
+     #...
+ 
     end
 
