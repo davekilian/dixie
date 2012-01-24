@@ -57,6 +57,7 @@ class Dribble < ActionController::Base
 		@@api_secret = api_secret
 		@@access_mode = access_mode
 		@@controller = controller
+		@@authorized = false
 	end
 
 	# When the user visits your page organically, this method call checks 
@@ -99,21 +100,11 @@ class Dribble < ActionController::Base
 		params = @@controller.params
 		request = @@controller.request
 
-		if session.has_key?(:dribble)
-			parts = session[:dribble].split '-'
+		if authorized?
+			yield DribbleResponder.new(:cached) if block_given?
+		end
 
-			if parts.count == 4
-					request_key = parts[0]
-					request_secret = parts[1]
-					access_key = parts[2]
-					access_secret = parts[3]
-
-					@@session.set_request_token(request_key, request_secret)
-					@@session.set_access_token(access_key, access_secret)
-
-					yield DribbleResponder.new(:cached) if block_given?
-			end
-		elsif params.has_key?(:dribble_callback)
+		if params.has_key?(:dribble_callback)
 			request = params[:dribble_callback].split '-'
 			@@session.set_request_token(request[0], request[1])
 
@@ -127,7 +118,7 @@ class Dribble < ActionController::Base
 
 				session[:dribble] = [ request_key, request_secret, access_key,
 									  access_secret ].join '-'
-			
+		
 				yield DribbleResponder.new(:success) if block_given?
 			rescue DropboxAuthError => e
 				yield DribbleResponder.new(:failure, 
@@ -147,17 +138,54 @@ class Dribble < ActionController::Base
 		end
 	end
 
-	# Gets the +DropboxSession+ object constructed during a call to
-	# Dribble::authorize. Returns +nil+ if Dribble::authorize hasn't
-	# been called yet.
+	# If the user that requested the page has a cookie containing valid
+	# Dropbox tokens, this method reconstructs the session from the tokens
+	# and returns +true+. Otherwise the method returns +false+. 
+	def self.authorized?
+		return true if @@authorized
+
+		@@session = DropboxSession.new(@@api_key, @@api_secret)
+		session = @@controller.session
+
+		if session.has_key?(:dribble)
+			parts = session[:dribble].split '-'
+
+			if parts.count == 4
+				request_key = parts[0]
+				request_secret = parts[1]
+				access_key = parts[2]
+				access_secret = parts[3]
+
+				@@session.set_request_token(request_key, request_secret)
+				@@session.set_access_token(access_key, access_secret)
+
+				begin
+					self.client.account_info # Make sure tokens haven't expired
+					@@authorized = true
+				rescue DropboxAuthError => err
+					session.delete :dribble
+					@@authorized = false
+				end
+
+				return @@authorized
+			end
+		end
+
+		false
+	end
+
+	# Gets the +DropboxSession+ object corresponding to the authorized
+	# session Dribble created. Returns +nil+ if neither Dribble::authorize
+	# nor Dribble::authorized? has been called.
 	def self.session
 		@@session
 	end
 
-	# Gets a +DropboxClient+ object based on the Dropbox session Dribble
-	# is managing. The client object is constructed once and reused until 
-	# the current page request is completed. If the application is not
-	# authorized, this method returns +nil+.
+	# Gets a +DropboxClient+ object authorized through the authorized
+	# session Dribble created. The client object is constructued on the
+	# first call to this method and is reused until the current page
+	# request is comipleted. If the application is not authorized, 
+	# this method returns +nil+.
 	def self.client
 			@@client ||= 
 				DropboxClient.new(@@session, @@access_mode) if @@session
