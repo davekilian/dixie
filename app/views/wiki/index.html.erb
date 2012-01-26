@@ -1,10 +1,27 @@
 <h1>My Wikis</h1>
 
+<% if @wiki.count > 0 %>
+
 <% @wiki.each_pair do |url, name| %>
 	<p><a href="<%= url %>"><%= name %></a></p>
 <% end %>
 
 <hr style="width: 20%" align="left" />
 
-<p><a href="/new">Create a new wiki</a></p>
+<% else %>
+
+<p>You don't have any wikis right now. Would you like to <a href="404">restore your help wiki</a>?</p>
+
+<% end %>
+
+<p><a id="toggle" href="#">Create a new wiki</a></p>
+
+<div style="height:2em; display:none" id="create">
+	<form action="/create" method="post">
+		<p>Name your wiki: 
+		<input type="text" name="wiki_name" id="wiki_name" style="width: 300px" />
+		<input type="submit" value="Create" /></p>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+	</form>
+</div>
 
