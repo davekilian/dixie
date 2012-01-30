@@ -1,0 +1,19 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.page-title {
+	font-size: 200%;
+	white-space: nowrap;
+}
+
+.wiki-title, .actions {
+	color: #888;
+	font-size: 95%;
+	white-space: nowrap;
+}
+
+.actions {
+	text-align: right;
+}
+

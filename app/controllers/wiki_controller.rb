@@ -12,8 +12,8 @@ class WikiController < ApplicationController
 
 			contents = client.metadata('/')['contents']
 			
-			contents.each do |hash|
-				url = hash['path'].split('/').last
+			contents.each do |file|
+				url = file['path'].split('/').last
 				@wiki[url] = WikiName.from_url(url)
 			end
 		else
