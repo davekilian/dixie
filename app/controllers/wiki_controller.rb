@@ -29,18 +29,17 @@ class WikiController < ApplicationController
 	end
 
 	def create
+		require 'main-page.rb'
+
 		Dribble::configure(DROPBOX_API_KEY, DROPBOX_API_SECRET, :app_folder, self)
 		if Dribble::authorized?
 			name = params['wiki_name']
 			url = WikiName.to_url(name)
 			client = Dribble::client
 			client.file_create_folder(url)
-			
-			# TODO
-			# - Create the main-page from a template asset
-			# - Redirect to that main page instead of this list
-			index
-		   	render 'wiki/index'
+			client.put_file("#{url}/main-page.md", MAIN_PAGE_MD, true)		
+		
+			redirect_to "/#{url}"
 		end
 	end
 
