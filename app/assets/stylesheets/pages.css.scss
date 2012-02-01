@@ -17,3 +17,81 @@
 	text-align: right;
 }
 
+// Syntax highlighting for highlight.js
+pre code {
+	display: block;
+	padding-top: 0.5em;
+	background: #002b36;
+	color: #839496;
+	font-family: menlo, consolas, monospace;;
+}
+
+pre code[class]:after {
+	display: block; 
+	border-top: 1px solid #839496;
+	margin-top: 0.5em;
+	background: #073642;
+	content: '(' attr(class) ')';
+	text-align: right;
+}
+
+pre .tag .title,
+pre .keyword
+{
+	color: #93a1a1;
+	font-weight: bold;
+}
+
+pre .constant,
+pre .inheritance .parent,
+pre .class .title
+{
+	color: #b58900; /* Yellow */
+}
+
+pre .placeholder	
+{
+	color: #cb4b16; /* Orange */
+}
+
+pre .placeholder
+{
+	color: #dc322f; /* Red */
+}
+
+pre .placeholder
+{
+	color: #d33682; /* Magenta */
+}
+
+pre .placeholder	
+{
+	color: #6c71c4; /* Violet */
+}
+
+pre .function .title,
+pre .variable
+{
+	color: #268bd2; /* Blue */
+}
+
+pre .number,
+pre .tag .value,
+pre .symbol,
+pre .string	
+{
+	color: #2aa198; /* Cyan */
+}
+
+pre .identifier .keyword
+{
+	color: #859900; /* Green */
+}
+
+pre .javadoc,
+pre .doctype,	
+pre .comment
+{
+	color: #586e75; /* Comment */
+}
+
