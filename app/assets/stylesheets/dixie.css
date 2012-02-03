@@ -1,7 +1,7 @@
 
 body {
 	background-color : #eee;
-	
+
 	font-family : sans-serif;
 }
 
@@ -49,7 +49,7 @@ a.footer-link:hover {
 	text-decoration : underline;
 }
 
-p {
+p, li {
 	font-size : 1.1em;
 }
 
