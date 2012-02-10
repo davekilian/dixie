@@ -1,17 +1,18 @@
 Dixie::Application.routes.draw do
 
-	root					:to => 'wiki#index'
-	match '/manage',		:to => 'wiki#index'
+	root						:to => 'wiki#index'
+	match '/manage',			:to => 'wiki#index'
 
-	match '/login',			:to => 'wiki#login'
+	match '/login',				:to => 'wiki#login'
 
-	match '/about',			:to => 'static_pages#about'
-	match '/contact',		:to => 'static_pages#contact'
-	match '/privacy',		:to => 'static_pages#privacy'
+	match '/about',				:to => 'static_pages#about'
+	match '/contact',			:to => 'static_pages#contact'
+	match '/privacy',			:to => 'static_pages#privacy'
 
-	match '/create',		:to => 'wiki#create'
+	match '/create',			:to => 'wiki#create'
 
-	match '/:wiki(/:page)',	:to => 'pages#show'
+	match '/:wiki(/:page)',		:to => 'pages#show'
+	match '/:wiki/:page/edit',	:to => 'pages#edit'
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
