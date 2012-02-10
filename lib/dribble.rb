@@ -102,9 +102,7 @@ class Dribble < ActionController::Base
 
 		if authorized?
 			yield DribbleResponder.new(:cached) if block_given?
-		end
-
-		if params.has_key?(:dribble_callback)
+		elsif params.has_key?(:dribble_callback)
 			request = params[:dribble_callback].split '-'
 			@@session.set_request_token(request[0], request[1])
 
