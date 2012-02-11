@@ -1,0 +1,29 @@
+
+<table id="page-header" style="width: 100%">
+	<tr>
+		<td class="page-title" style="width: 100%">
+			<% if @header_prefix %>
+				<span style="color: #777"><%= @header_prefix %>:</span>
+			<% end %>
+			<%= WikiName::from_url(@pageurl) %>
+		</td>
+	</tr>
+	<tr>
+		<td class="wiki-title">
+			in <a href="/<%= @wikiurl %>"><%= WikiName::from_url(@wikiurl) %></a>
+		</td>
+		<td class="actions">
+			<% if @header_links == :edit %>
+				<a href="#" onclick="javascript:document.forms['source-form'].submit();">Save</a> |
+				<a href="<%= @baseurl %>">Cancel</a>
+			<% elsif @header_links == :show %>
+				<a href="<%= @baseurl + '/edit' %>">Edit</a> |
+				<a href="<%= @baseurl + '/src' %>">View Source</a> |
+				<a href="<%= @baseurl + '/share' %>">Share</a>
+			<% end %>
+		</td>
+	</tr>
+</table>
+
+<hr style="margin-bottom: 1.5em">
+

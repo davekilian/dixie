@@ -1,23 +1,5 @@
 
-<table id="page-header" style="width: 100%">
-	<tr>
-		<td class="page-title" style="width: 100%">
-			<%= WikiName::from_url(@pageurl) %>
-		</td>
-	</tr>
-	<tr>
-		<td class="wiki-title">
-			in <a href="/<%= @wikiurl %>"><%= WikiName::from_url(@wikiurl) %></a>
-		</td>
-		<td class="actions">
-			<a href="<%= @baseurl + '/edit' %>">Edit</a> |
-			<a href="<%= @baseurl + '/src' %>">View Source</a> |
-			<a href="<%= @baseurl + '/share' %>">Share</a>
-		</td>
-	</tr>
-</table>
-
-<hr style="margin-bottom: 1.5em">
+<%= render 'header' %>
 
 <div id="markdown-source"><%= @contents %></div>
 

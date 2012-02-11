@@ -5,10 +5,18 @@ class PagesController < ApplicationController
 
 	def show
 		get_page
+		@header_links = :show
 	end
 
 	def edit
 		get_page
+		@header_prefix = 'Editing'
+		@header_links = :edit
+	end
+
+	def save
+		put_page
+		redirect_to "/#{params[:wiki]}/#{params[:page]}"
 	end
 
 private
@@ -41,6 +49,22 @@ private
 			end
 		end
 		
+	end
+
+	def put_page
+		Dribble::configure(DROPBOX_API_KEY, DROPBOX_API_SECRET, :app_folder, self)
+		if Dribble::authorized?
+			@wikiurl = params[:wiki]
+			@pageurl = params[:page]
+			@baseurl = "/#{@wikiurl}/#{@pageurl}"
+			@contents = params[:markdown]
+
+			logger.info @baseurl
+			logger.info @contents
+
+			client = Dribble::client
+			client.put_file "#{@baseurl}.md", @contents, true
+		end
 	end
 
 end

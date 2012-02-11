@@ -13,6 +13,7 @@ Dixie::Application.routes.draw do
 
 	match '/:wiki(/:page)',		:to => 'pages#show'
 	match '/:wiki/:page/edit',	:to => 'pages#edit'
+	match '/:wiki/:page/save',	:to => 'pages#save'
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.

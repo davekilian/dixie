@@ -1,2 +1,16 @@
-<h1>TODO: edit page</h1>
+
+<%= render 'header' %>
+
+<div id="source-view">
+	<form id='source-form' method='post' action='<%= "#{@baseurl}/save" %>'>
+		<textarea style="width: 100%; font-family: monospace; font-size: 110%;" id="editor" name="markdown">
+			<%= @contents %>
+		</textarea>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+	</form>
+</div>
+
+<div id="preview-view" style="width: 100%;display:none">
+	<!-- TODO -->
+</div>
 
