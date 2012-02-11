@@ -2,16 +2,19 @@
 $(document).ready(function() {
 	resize = function() {
 		var edit = $('#editor');
-		var lines = edit.val().split("\n");
-		edit.attr("rows", lines.length);
+		var text = edit.val();
+		if (text)
+			edit.attr("rows", text.split("\n").length);
 	}
 
-	var edit= $('#editor')
-	edit.keydown(resize);
-	edit.keyup(resize);
+	var edit= $('#editor');
+	if (edit) {
+		edit.keydown(resize);
+		edit.keyup(resize);
 
-	resize();
+		resize();
 
-	edit.focus();
+		edit.focus();
+	}
 })
 
