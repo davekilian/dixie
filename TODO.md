@@ -3,7 +3,6 @@ TODO
 ====
 
 * Editing pages
-  * On editing a page, we get like 3 tabs at the beginning. ?
   * Accept tabs in editor
   * Preview mode
   * Keyboard shortcuts
