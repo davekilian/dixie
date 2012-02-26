@@ -1,7 +1,7 @@
 
 <%= render 'header' %>
 
-<p><a href="#" id="edit-mode">Show Preview</a></p>
+<p><a href="#" id="edit-mode">Show Preview</a> <span style="color:#888; font-size: 80%">(Alt+P)</span></p>
 
 <div id="source-view">
 	<form id='source-form' method='post' action='<%= "#{@baseurl}/save" %>'>
@@ -11,8 +11,10 @@
 </div>
 
 <div id="preview-view" style="width: 100%;display:none">
-    <p style="color:red">This is a live preview of your page. Press 
-    <a href="#" onclick="javascript:document.forms['source-form'].submit();">Save</a>
-    to save your changes.</p>
+    <p class="preview-warning">
+        This is a live preview of your page. Press 
+        <a href="#" onclick="javascript:document.forms['source-form'].submit();">Save</a>
+        to save your changes.
+    </p>
 </div>
 

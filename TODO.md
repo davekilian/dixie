@@ -2,8 +2,6 @@
 TODO
 ====
 
-* Editing pages
-  * Keyboard shortcuts
 * Support for internal shortlinks (i.e. [text](page-name-in-wiki))
 * "not found" pages
 * Deleting wikis

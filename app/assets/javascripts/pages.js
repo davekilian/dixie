@@ -20,13 +20,13 @@ $(document).ready(function() {
 
 // Behavior for the edit page (/wikiname/pagename/edit)
 $(document).ready(function() {
+    // Auto-resizing
 	resize = function() {
 		var edit = $('#editor');
 		var text = edit.val();
 		if (text)
 			edit.attr("rows", text.split("\n").length);
 	}
-
 	var edit = $('#editor');
 	if (edit) {
 		edit.keydown(resize);
@@ -37,6 +37,7 @@ $(document).ready(function() {
 		edit.focus();
 	}
 
+    // Edit/preview tab switch
     var editmode = $('#edit-mode');
     if (editmode) {
         editmode.click(function() {
@@ -62,6 +63,29 @@ $(document).ready(function() {
         });
     }
 
+    // Keyboard shortcut for the edit/preview switch
+    var alt = false;
+    $(document).keydown(function(ev) {
+        if (ev.altKey) alt = true; 
+        
+        if (ev.keyCode == 'P'.charCodeAt(0) && alt) {
+            var editmode = $('#edit-mode');
+            if (editmode)
+                editmode.click();
+
+            ev.preventDefault();
+            return false;
+        } else if (ev.keyCode == 'S'.charCodeAt(0) && alt) {
+            document.forms['source-form'].submit();
+            ev.preventDefault();
+            return false;
+        }
+    });
+    $(document).keyup(function(ev) {
+        if (ev.altKey) alt = false; 
+    });
+
+    // Editor textarea captures the tab key
     // Thanks stack overflow :D
     $('#editor').keydown(function (ev) {
         if (ev.keyCode == 9) {
