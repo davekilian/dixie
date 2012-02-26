@@ -6,21 +6,8 @@
 		<%= javascript_include_tag "application" %>
         <%= javascript_include_tag params[:controller] %>
 		<%= csrf_meta_tags %>
-		<script type="text/javascript">
-			function unesc(str) {
-				var tmp = document.createElement("div");
-				tmp.innerHTML = str;
-				return tmp.childNodes[0].nodeValue;
-			}
-
-			function render_markdown() {
-				var node = document.getElementById("markdown-source");
-				node.innerHTML = new Showdown.converter().makeHtml(unesc(node.innerHTML));
-				hljs.initHighlighting();
-			}
-		</script>
 	</head>
-	<body onload="render_markdown()">
+    <body> 
 		<div class="content-border" style="width:1000px;margin-left:auto;margin-right:auto;">
 			<div class="content" style="margin-top: .5em">
 				<%= yield %>

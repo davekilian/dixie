@@ -1,6 +1,8 @@
 
 <%= render 'header' %>
 
+<p><a href="#" id="edit-mode">Show Preview</a></p>
+
 <div id="source-view">
 	<form id='source-form' method='post' action='<%= "#{@baseurl}/save" %>'>
 		<textarea style="width: 100%; font-family: monospace; font-size: 110%;" id="editor" name="markdown"><%= @contents %></textarea>
@@ -9,6 +11,8 @@
 </div>
 
 <div id="preview-view" style="width: 100%;display:none">
-	<!-- TODO -->
+    <p style="color:red">This is a live preview of your page. Press 
+    <a href="#" onclick="javascript:document.forms['source-form'].submit();">Save</a>
+    to save your changes.</p>
 </div>
 
