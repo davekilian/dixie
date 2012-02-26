@@ -61,5 +61,23 @@ $(document).ready(function() {
             return false;
         });
     }
+
+    // Thanks stack overflow :D
+    $('#editor').keydown(function (ev) {
+        if (ev.keyCode == 9) {
+            var tab = "\t";
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+            var scroll = this.scrollTop;
+
+            this.value = this.value.substring(0, start) + tab + this.value.substring(end, this.value.length);
+
+            this.focus();
+            this.selectionStart  = this.selectionEnd = start + 1;
+            this.scrollTop = scroll;
+            
+            ev.preventDefault();
+        }
+    });
 });
 
