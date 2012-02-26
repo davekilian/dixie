@@ -4,6 +4,7 @@
 		<title><%= "#{@title} | " if @title %>Dixie</title>
 		<%= stylesheet_link_tag    "application" %>
 		<%= javascript_include_tag "application" %>
+        <%= javascript_include_tag params[:controller] %>
 		<%= csrf_meta_tags %>
 		<script type="text/javascript">
 			function unesc(str) {
